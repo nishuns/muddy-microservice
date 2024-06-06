@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const axios = require('axios');
 
 function listAssistants({ order = 'desc', limit = 20 }) {

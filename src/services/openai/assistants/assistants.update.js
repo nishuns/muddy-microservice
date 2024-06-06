@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const axios = require('axios');
 
 function modifyAssistant(assistantId, { instructions, tools, model = "gpt-4-turbo" }) {
