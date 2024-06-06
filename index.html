@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI API Integration</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>OpenAI API Integration</h1>
+
+        <!-- Text to Speech Section -->
+        <h2>Text to Speech</h2>
+        <form @submit.prevent="handleSubmit">
+            <input type="text" v-model="textInput" placeholder="Enter text here..." />
+            <button type="submit">Convert to Speech</button>
+        </form>
+        <audio v-if="audioUrl" :src="audioUrl" controls></audio>
+
+        <!-- Fetch Assistant Section -->
+        <h2>Fetch Assistant Details</h2>
+        <button @click="fetchAssistant">Get Assistant Details</button>
+        <div v-if="assistantData">
+            <p><strong>ID:</strong> {{ assistantDetails.id }}</p>
+            <p><strong>Object:</strong> {{ assistantDetails.object }}</p>
+        </div>
+        <p v-if="error">{{ error }}</p>
+
+        <!-- Create Thread Section -->
+        <h2>Create Thread</h2>
+        <form @submit.prevent="createThread">
+            <input type="text" v-model="threadInput" placeholder="Enter input for thread..." />
+            <button type="submit">Create Thread</button>
+        </form>
+        <div v-if="threadResponse">
+            <h3>Thread Response:</h3>
+            <p>{{ threadResponse }}</p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                textInput: '',
+                audioUrl: null,
+                apiKey: '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', // Replace with your actual API key
+                assistantId: 'asst_NpdzSj4TgJH53es01e7lwQQX',
+                assistantData: null,
+                threadInput: '',
+                threadResponse: null,
+                error: null
+            },
+            methods: {
+                textToSpeech(text) {
+                    const url = 'https://api.openai.com/v1/audio/speech';
+                    const data = {
+                        model: "tts-1",
+                        input: text,
+                        voice: "alloy"
+                    };
+
+                    return fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${this.apiKey}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.blob();
+                        })
+                        .then(blob => {
+                            const url = URL.createObjectURL(blob);
+                            return url;
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                            throw error;
+                        });
+                },
+                handleSubmit() {
+                    this.textToSpeech(this.textInput)
+                        .then(url => {
+                            this.audioUrl = url;
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Failed to convert text to speech');
+                        });
+                },
+                fetchAssistant() {
+                    const url = `https://api.openai.com/v1/assistants/${this.assistantId}`;
+                    fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${this.apiKey}`,
+                            'OpenAI-Beta': 'assistants=v2'
+                        }
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Failed to fetch assistant details');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            this.assistantData = data;
+                            this.error = null;
+                        })
+                        .catch(error => {
+                            this.error = error.message;
+                            this.assistantData = null;
+                        });
+                },
+                createThread() {
+                    const url = `https://api.openai.com/v1/assistants/${this.assistantId}/threads`;
+                    const data = {
+                        input: this.threadInput
+                    };
+
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${this.apiKey}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Failed to create thread');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            this.threadResponse = JSON.stringify(data, null, 2);
+                        })
+                        .catch(error => {
+                            console.error('Error creating thread:', error);
+                            alert('Failed to create thread');
+                        });
+                }
+            },
+            computed: {
+                assistantDetails() {
+                    return this.assistantData ? {
+                        id: this.assistantData.id,
+                        object: this.assistantData.object
+                    } : {};
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
