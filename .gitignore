@@ -2,9 +2,3 @@ node_modules
 .env
 credentials.json
 package-lock.json
-log
-src/assets/*
-tjauthsecret
-tjauthsecret.pub
-.DS_Store
-Books/*
