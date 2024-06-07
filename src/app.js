@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const userRoutes = require('./routes/userRoutes');
+const routes = require('./routes/index');
 // const connectDB = require('./config/db');
 
 // Load environment variables from .env file
@@ -17,6 +17,7 @@ const app = express();
 // Built-in middleware for parsing application/json
 app.use(express.json());
 
+
 // Built-in middleware for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
@@ -24,7 +25,8 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan('combined'));    
 
-app.use('/api/users', userRoutes);
+// Use the routes with the base path /api/v1/eddie
+app.use('/api/v1/eddie', routes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

@@ -16,7 +16,7 @@ function retrieveThread(threadId) {
   }
 
   const headers = {
-    "Content-Type": "application/json",
+    "Content-Type": "application/json", 
     "Authorization": `Bearer ${apiKey}`,
     "OpenAI-Beta": "assistants=v2"
   };
