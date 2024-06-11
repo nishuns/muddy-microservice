@@ -7,7 +7,7 @@ const listMessages = require('./openai/messages/messages.lists');
 require('dotenv').config();
 
 function handleThreadRun(threadId, message) {
-  const assistantId = 'asst_NpdzSj4TgJH53es01e7lwQQX'; // Replace with your actual assistant ID
+  const assistantId = process.env.ASSISTANT_KEY; // Replace with your actual assistant ID
   const model = 'gpt-4o'; // Replace with your desired model if needed
 
   return new Promise((resolve, reject) => {
