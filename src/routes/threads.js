@@ -6,7 +6,7 @@ const router = express.Router();
 // POST /api/v1/eddie/create-thread
 router.post('/create-thread', (req, res) => {
   createThread({
-    messages: [{ role: 'user', content: 'never answer in not more than 30 words' }]
+    messages: [{ role: 'user', content: 'never answer in not more than 30 words and never show sources' }]
   }).then(response => {
     res.send(response);
   });
