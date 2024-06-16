@@ -1,0 +1,110 @@
+[
+  {
+    "name": "growthmindset1",
+    "config": {
+      "scene": {
+        "plot": "You are here to learn about the Growth Mindset. In this journey, you will explore key concepts, engage in practical exercises, and apply your knowledge in real-world scenarios.",
+        "characters": [
+          {
+            "id": "mentor_01",
+            "name": "Dr. Elena",
+            "role": "Mentor",
+            "situation": "Guides the learner through the topic, providing insights, explanations, and challenges.",
+            "about": [
+              "Experienced educational psychologist",
+              "Patient and insightful",
+              "Provides real-world examples",
+              "Encourages reflective thinking",
+              "Expert in mindset theories",
+              "Uses storytelling for teaching",
+              "Interactive teaching style",
+              "Supportive and motivational",
+              "Focuses on emotional intelligence",
+              "Promotes lifelong learning"
+            ]
+          },
+          {
+            "id": "fellow_01",
+            "name": "Alex",
+            "role": "Peer",
+            "situation": "Learns alongside the protagonist, offering additional perspectives and collaborative opportunities.",
+            "about": [
+              "Curious and inquisitive",
+              "Passionate about personal development",
+              "Offers different perspectives",
+              "Supports collaborative learning",
+              "Friendly and encouraging",
+              "Shares personal growth experiences",
+              "Engages in discussions",
+              "Asks challenging questions",
+              "Values feedback",
+              "Promotes a positive learning environment"
+            ]
+          }
+        ]
+      },
+      "interactions": [
+        {
+          "type": "question",
+          "content": "What do you think is the most important aspect of a growth mindset?",
+          "responses": [
+            "Embracing challenges",
+            "Learning from criticism",
+            "Effort leads to mastery"
+          ]
+        },
+        {
+          "type": "video",
+          "content": "Watch this video to understand the fundamentals of a growth mindset.",
+          "url": "http://example.com/video_growth_mindset"
+        },
+        {
+          "type": "assessment",
+          "content": "Let's test your understanding of the Growth Mindset.",
+          "questions": [
+            {
+              "question": "Explain the significance of embracing failure.",
+              "type": "open-ended"
+            },
+            {
+              "question": "Which of the following is true about a fixed mindset?",
+              "type": "multiple-choice",
+              "options": [
+                "Believes talent is innate",
+                "Welcomes challenges",
+                "Values effort"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "practical_exercise",
+          "content": "Identify a recent challenge you faced and describe how you applied a growth mindset.",
+          "responses": [
+            "Describe the challenge",
+            "Explain your approach",
+            "Reflect on the outcome"
+          ]
+        },
+        {
+          "type": "discussion",
+          "content": "Share your thoughts on the role of effort in achieving mastery.",
+          "responses": [
+            "Crucial for improvement",
+            "Secondary to talent",
+            "Motivates perseverance"
+          ]
+        }
+      ],
+      "mastery": {
+        "criteria": "The learner demonstrates a comprehensive understanding of a Growth Mindset and can apply the concepts in practical scenarios.",
+        "nextSteps": [
+          "Emotional Intelligence",
+          "Resilience Building",
+          "Goal Setting"
+        ]
+      }
+    },
+    "threadId": "thread_y15GdYiJa0jQCnjDITnLLA2r"
+  }
+]

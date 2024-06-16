@@ -1,0 +1,12 @@
+{
+  "story": "Once upon a time...",
+  "characters": [
+    {
+      "name": " Alex Meyers",
+      "position": "CEO",
+      "traits": ["adventures"],
+      "gender": "male",
+      "description": "Visionary leader keen on building a strong team to revolutionize the tech world"
+    }
+  ]
+}
